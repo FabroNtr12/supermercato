@@ -1,4 +1,9 @@
-import { Routes } from '@angular/router';
+import { 
+  Routes,
+  RouterModule 
+} from '@angular/router';
+
+import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
   {
@@ -17,6 +22,10 @@ export const routes: Routes = [
   },
   {
     path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    loadComponent: () => import('./home-admin/home.page').then((m) => m.HomePage),
+  },
+  {
+    path: 'supermercato',
+    loadComponent: () => import('./supermercato/supermercato.page').then( m => m.SupermercatoPage)
   }
 ];

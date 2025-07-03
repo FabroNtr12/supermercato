@@ -57,7 +57,6 @@ export class RegisterPage implements OnInit {
   ngOnInit() {}
  
   async register() {
-    console.log(this.ruolo);
     this.authService.register(this.username, this.password, this.ruolo, this.email).subscribe({
       next: async () => {
         const alert = await this.alertCtrl.create({

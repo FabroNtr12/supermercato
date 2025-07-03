@@ -15,7 +15,10 @@ export class AuthService {
   }
 
   register(username: string, password: string, role: string, email: string) {
-    console.log(role);
     return this.http.post(this.apiUrl + '/api/register', { username, password, role, email });
+  }
+
+  dashboard() {
+    return this.http.get(this.apiUrl + '/dashboard');
   }
 }
