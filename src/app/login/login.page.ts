@@ -57,7 +57,7 @@ export class LoginPage {
             text: "OK",
             handler: () => {
               if (res.user.role === 'admin') {
-                this.router.navigate(['/home']);
+                this.router.navigate(['/dashboard-admin']);
               } else if (res.user.role === 'manager') {
                 this.router.navigate(['/dashboard-manager']);
               } else if (res.user.role === 'customer') {
