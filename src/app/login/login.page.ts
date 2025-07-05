@@ -13,10 +13,10 @@ import {
   IonButtons,
   AlertController
 } from '@ionic/angular/standalone';
- 
+
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
- 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -39,23 +39,34 @@ import { Router } from '@angular/router';
 export class LoginPage {
   username: string = '';
   password: string = '';
- 
+
   constructor(
     private alertCtrl: AlertController,
     private authService: AuthService,
     private router: Router
-  ) {}
- 
+  ) { }
+
   async login() {
     this.authService.login(this.username, this.password).subscribe({
-      next: async (res) => {
+      next: async (res: any) => {
+        console.log(res);
         const alert = await this.alertCtrl.create({
           header: 'Login Riuscito',
           message: `Benvenuto, ${this.username}!`,
-          buttons: ['OK'],
+          buttons: [{
+            text: "OK",
+            handler: () => {
+              if (res.user.role === 'admin') {
+                this.router.navigate(['/home']);
+              } else if (res.user.role === 'manager') {
+                this.router.navigate(['/dashboard-manager']);
+              } else if (res.user.role === 'customer') {
+                this.router.navigate(['/dashboard-customer']);
+              }
+            }
+          }],
         });
         await alert.present();
-        this.router.navigate(['/home']);
       },
       error: async (err) => {
         const alert = await this.alertCtrl.create({
@@ -67,7 +78,7 @@ export class LoginPage {
       }
     });
   }
- 
+
   goToRegister() {
     this.router.navigate(['/register']);
   }

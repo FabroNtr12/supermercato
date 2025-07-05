@@ -1,9 +1,6 @@
 import { 
-  Routes,
-  RouterModule 
+  Routes
 } from '@angular/router';
-
-import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
   {
@@ -27,5 +24,17 @@ export const routes: Routes = [
   {
     path: 'supermercato',
     loadComponent: () => import('./supermercato/supermercato.page').then( m => m.SupermercatoPage)
+  },
+  {
+    path: 'dashboard-admin',
+    loadComponent: () => import('./dashboard-admin/dashboard-admin.page').then( m => m.DashboardAdminPage)
+  },
+  {
+    path: 'dashboard-manager',
+    loadComponent: () => import('./dashboard-manager/dashboard-manager.page').then( m => m.DashboardManagerPage)
+  },
+  {
+    path: 'dashboard-customer',
+    loadComponent: () => import('./dashboard-customer/dashboard-customer.page').then( m => m.DashboardCustomerPage)
   }
 ];

@@ -11,7 +11,7 @@ import {
   IonItem,
   IonList
 } from '@ionic/angular/standalone';
-import { CommonModule, JsonPipe } from '@angular/common'
+import { CommonModule } from '@angular/common'
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -30,7 +30,6 @@ import { AuthService } from '../services/auth.service';
     IonItem,
     IonList,
     RouterModule,
-    JsonPipe
   ]
 })
 
@@ -43,9 +42,7 @@ export class HomePage {
   ngOnInit() {
     this.authService.dashboard().subscribe({
       next: async (data: any) => {
-        console.log(data);
-        this.users = data.data.users;
-        console.log(this.users);
+        
       },
       error: (err) => {
         console.error("Errore caricamento utenti", err);
